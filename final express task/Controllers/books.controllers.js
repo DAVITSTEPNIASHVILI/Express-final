@@ -75,10 +75,10 @@ export const deleteBook = async (req, res) => {
 
     const id = Number(req.params.id)
 
-    if (data.find(obj => obj.id === id).length === 0) {
+    if (data.filter(obj => obj.id === id).length === 0) {
         return res.status(404).send("Book not found")
     }
-
+    
     data = data.filter(obj => obj.id !== id)
 
     await WriteFile(process.env.DB, data)
